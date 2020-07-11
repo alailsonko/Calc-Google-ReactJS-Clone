@@ -28,6 +28,7 @@ module.exports = {
   ],
   rules: {
     'react/state-in-constructor': 'off',
+    'no-nested-ternary': 'off',
     'prettier/prettier': 'error',
     'react/jsx-filename-extension':[
       'warn',

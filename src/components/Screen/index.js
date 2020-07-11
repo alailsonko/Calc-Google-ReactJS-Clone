@@ -2,10 +2,10 @@ import React from 'react';
 
 import { Input } from './styles';
 
-function Screen() {
+function Screen({ result }) {
   return (
     <>
-      <Input type="text" readOnly />
+      <Input value={result} type="text" readOnly />
     </>
   );
 }
