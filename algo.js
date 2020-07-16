@@ -75,3 +75,15 @@ console.log(calculo());
 
 console.log(multi(2, 3));
 console.log(2 * 3);
+
+const num = '43743x43';
+
+const parsed = num.split('');
+
+const indexNum = parsed.indexOf('x');
+
+if (indexNum !== -1) {
+  parsed[indexNum] = '*';
+}
+
+parsed;

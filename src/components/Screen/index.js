@@ -1,12 +1,30 @@
 import React from 'react';
 
-import { Input } from './styles';
+import { Container } from './styles';
 
-function Screen({ result }) {
+function Screen({ result, calc, transition }) {
   return (
-    <>
-      <Input value={result} type="text" readOnly />
-    </>
+    <Container transition={transition}>
+      {result ? (
+        <label id="result" htmlFor="screen">
+          {result}
+        </label>
+      ) : result ? (
+        <label id="result" htmlFor="screen">
+          Ans = {result}
+        </label>
+      ) : null}
+      {transition ? (
+        <label id="calc" htmlFor="screen">
+          {calc} =
+        </label>
+      ) : (
+        <label id="calc" htmlFor="screen">
+          {calc}
+        </label>
+      )}
+      <input value="" id="screen" readOnly />
+    </Container>
   );
 }
 

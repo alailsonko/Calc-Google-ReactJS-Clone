@@ -6,23 +6,34 @@ import { Container, Button } from './styles';
 import keys from '../../static/keyboard/keys.json';
 
 function Keyboard() {
-  const [calc, setCalc] = useState('');
+  const [calc, setCalc] = useState(['0']);
   const [result, setResult] = useState('');
+  const [transition, setTransition] = useState(false);
+
   function handleClick(num) {
     console.log(num);
-    setCalc([...calc, num]);
-    console.log([...calc, num]);
+
+    const arrayNum = [...calc, num];
+    const parsedNum = arrayNum.join('');
+    setCalc(parsedNum);
+    setTransition(false);
+    console.log(parsedNum);
   }
 
   function handleClickCalc(resultArray) {
-    const index = resultArray.indexOf('x');
+    const parsed = resultArray.split('');
+
+    const index = parsed.indexOf('x');
 
     if (index !== -1) {
-      resultArray[index] = '*';
+      parsed[index] = '*';
     }
-    const parsedArray = resultArray.join('');
+    const parsedArray = parsed.join('');
     console.log(parsedArray);
     setResult(evaluate(parsedArray));
+    console.log(transition);
+    setTransition(true);
+    console.log(transition);
   }
 
   const typeDegree = {
@@ -32,7 +43,7 @@ function Keyboard() {
 
   return (
     <Container>
-      <Screen result={result} />
+      <Screen result={result} calc={calc} transition={transition} />
       <div>
         <div className="merge-btn">
           <Button>{typeDegree.Rad}</Button>
@@ -67,10 +78,7 @@ function Keyboard() {
                   {k.key}
                 </Button>
               ) : k.key === 'AC' ? (
-                <Button
-                  className=""
-                  onClick={(() => setResult(''), setCalc([]))}
-                >
+                <Button className="" onClick={() => console.log(`${k.key}`)}>
                   {k.key}
                 </Button>
               ) : (
